@@ -13,7 +13,7 @@ function swap_columns(matrix, col1, col2, row) {
 }
 
 function get_rank(matrix, R, C) {
-    let rank = C;
+    let rank = Math.min(R, C);
     for (let row = 0; row < rank; row++) {
         // Элемент на главной диагонали != 0
         if (matrix[row][row]) {
