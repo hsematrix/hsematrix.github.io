@@ -5,8 +5,8 @@ let rank = document.getElementsByClassName("rank")
 // Квадратная
 function isSquare(matrix) {
     if (matrix.length === matrix[0].length) {
-        return "Матрица является квадратной";
-    } return "Матрица является прямоугольной";
+        return "matrix is square";
+    } return "matrix isn't square";
 }
 
 //Нулевая
@@ -23,48 +23,48 @@ function isZero(matrix) {
             break;
         }
     }
-    if (flag) return "Матрица является нулевой";
-    return "Матрица является ненулевой";
+    if (flag) return "matrix is zero";
+    return "matrix isn't zero";
 }
 
 //Диагональная
 function isDiagonal(matrix) {
-    if (isSquare(matrix) === "Матрица не является квадратной") {
-        return "Прямоугольная матрица не может быть диагональной";
+    if (isSquare(matrix) === "matrix isn't square") {
+        return "rectangular matrix can't be diagonal";
     }
     let flag = true;
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] !== 0 && i !== j) {
-                return "Матрица не является диагональной";
+                return "matrix isn't diagonal";
             }
         }
     }
-    return "Матрица является диагональной";
+    return "matrix is diagonal";
     
 }
 
 //Единичная
 function isUnit(matrix){
-    if (isSquare(matrix) === "Матрица не является квадратной") {
-        return "Прямоугольная матрица не может быть единичной";
+    if (isSquare(matrix) === "matrix isn't square") {
+        return "rectangular matrix can't be identity";
     }
-    if (isDiagonal(matrix) === "Матрица не является диагональной") {
-        return "Недиагональная матрица не может быть единичной";
+    if (isDiagonal(matrix) === "matrix isn't diagonal") {
+        return "not diagonal matrix can't be identity";
     }
     for (let i = 0; i < matrix.length; i++) {
         if (matrix[i][i] !== 1) {
-                return "Матрица не является единичной";
+                return "matrix isn't indentity";
         }
     }
-    return "Матрица является единичной";
+    return "matrix is identity";
 }
 
 //Треугольная
 function isTriangle(matrix){
     let flag = true;
-    if (isSquare(matrix) === "Матрица не является квадратной") {
-        return "Прямоугольная матрица не может быть треугольной";
+    if (isSquare(matrix) === "matrix isn't square") {
+        return "rectangular matrix can't be triangular";
     }
     for (let i = 1; i < matrix.length; i++) {
         for (let j = 0; j < i; j++) {
@@ -90,9 +90,9 @@ function isTriangle(matrix){
         }
     }
     if (!flag && !flag1) {
-        return "Матрица не является треугольной";
+        return "matrix isn't triangular";
     }
-    return "Матрица является треугольной"
+    return "matrix is triangular"
 }
 
 //Ступенчатая
@@ -107,21 +107,21 @@ function isEchelon(matrix) {
             }
         }
         if (firstNonZeroIndex === -1) {
-            return "Матрица является ступенчатой";
+            return "matrix is echelon";
         }
         if (firstNonZeroIndex <= lastNonZeroIndex) {
-            return "Матрица не является ступенчатой";
+            return "matrix isn't echelon";
         }
         lastNonZeroIndex = firstNonZeroIndex;
     }
-    return "Матрица является ступенчатой";
+    return "matrix is echelon";
 }
 // - - -
 
 // - - - Здесь функция по подсчету определителя
 function determinant(matrix) {
-    if (isSquare(matrix) !== "Матрица является квадратной") {
-        return "Матрица должна быть квадратной для вычисления детерминанта.";
+    if (isSquare(matrix) === "matrix isn't square") {
+        return "the matrix must be square to calculate the determinant";
     }
     if (matrix.length === 2 && matrix[0].length === 2) {
         return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
