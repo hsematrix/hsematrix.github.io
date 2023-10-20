@@ -83,6 +83,7 @@ body::-webkit-scrollbar-thumb {
 	border: none;
 	font-size: 30px;
 	color: rgba(256,256,256,0.3);
+	text-align: center;
 }
 .rank:focus{
 	background-color: rgba(256,256,256,0.1);
