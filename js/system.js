@@ -226,7 +226,7 @@ det.addEventListener('click', () => {
 			console.log(mat)
 			setTimeout(function () { toBot() }, 500)
 			determinant.innerHTML = `determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${detr(mat)}</span>`
-			rang.innerHTML = `ran = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(deepCopy(mat), row_size, column_size)}</span>`
+			rang.innerHTML = `rank = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(deepCopy(mat), row_size, column_size)}</span>`
 			document.getElementsByClassName('t')[0].innerHTML = `<div class="property">${isSquare(mat)}</div>
 						<div class="property">${isZero(mat)}</div>
 						<div class="property">${isDiagonal(mat)}</div>
