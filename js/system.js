@@ -2,6 +2,20 @@ let det = document.getElementsByClassName("det")[0]
 let rank = document.getElementsByClassName("rank")
 
 // - - - Здесь функция по подсчету определителя
+function determinant(matrix) {
+    if (matrix.length !== matrix[0].length) {
+        return "Матрица должна быть квадратной для вычисления детерминанта.";
+    }
+    if (matrix.length === 2 && matrix[0].length === 2) {
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    }
+    let det = 0;
+    for (let i = 0; i < matrix[0].length; i++) {
+        const minor = matrix.slice(1).map(row => row.slice(0, i).concat(row.slice(i + 1)));
+        det += matrix[0][i] * determinant(minor) * (i % 2 === 0 ? 1 : -1);
+    }
+    return det;
+}
 // - - -
 
 // - - - Здесь по рангам
