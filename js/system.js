@@ -1,5 +1,7 @@
 let det = document.getElementsByClassName("det")[0]
 let rank = document.getElementsByClassName("rank")
+let determinant = document.getElementsByClassName("determinant")[0]
+let rang = document.getElementsByClassName("rang")[0]
 
 // - - - Здесь функция по подсчету определителя
 // - - -
@@ -72,6 +74,8 @@ det.addEventListener('click', () => {
  		})
  		if(flag==true){
  			setTimeout(function(){toBot()}, 500)
+ 			determinant.innerHTML=`determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${"?"}</span>`
+ 			rang.innerHTML=`ran = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${"?"}</span>`
 	 		detBool=false
 	 		det.style.transform='rotateX(180deg)'
 	 		det.style.backgroundColor='rgba(256,256,256,0.05)'
