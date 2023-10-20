@@ -3,7 +3,138 @@ let rank = document.getElementsByClassName("rank")
 let determinant = document.getElementsByClassName("determinant")[0]
 let rang = document.getElementsByClassName("rang")[0]
 
+// - - - Функции определения свойств
+// Квадратная
+function isSquare(matrix) {
+    if (matrix.length === matrix[0].length) {
+        return "square";
+    } return "";
+}
+
+//Нулевая
+function isZero(matrix) {
+    let flag = true;
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] !== 0) {
+                flag = false;
+                break;
+            }
+        }
+        if (!flag) {
+            break;
+        }
+    }
+    if (flag) return "zero";
+    return "";
+}
+
+//Диагональная
+function isDiagonal(matrix) {
+    if (isSquare(matrix) === "") {
+        return "";
+    }
+    let flag = true;
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] !== 0 && i !== j) {
+                return "";
+            }
+        }
+    }
+    return "diagonal";
+    
+}
+
+//Единичная
+function isUnit(matrix){
+    if (isSquare(matrix) === "") {
+        return "";
+    }
+    if (isDiagonal(matrix) === "") {
+        return "";
+    }
+    for (let i = 0; i < matrix.length; i++) {
+        if (matrix[i][i] !== 1) {
+                return "";
+        }
+    }
+    return "identity";
+}
+
+//Треугольная
+function isTriangle(matrix){
+    let flag = true;
+    if (isSquare(matrix) === "") {
+        return "";
+    }
+    for (let i = 1; i < matrix.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (matrix[i][j] !== 0){
+                flag = false;
+                break;
+            }            
+        }
+        if (!flag) {
+            break;
+        }
+    }
+    let flag1 = true;
+    for (let i = 1; i < matrix.length; i++) {
+        for (let j = 0; j < i; j++) {
+            if (matrix[j][i] !== 0){
+                flag1 = false;
+                break;
+            }            
+        }
+        if (!flag1) {
+            break;
+        }
+    }
+    if (!flag && !flag1) {
+        return "";
+    }
+    return "triangular"
+}
+
+//Ступенчатая
+function isEchelon(matrix) {
+    let lastNonZeroIndex = -1; 
+    for (let i = 0; i < matrix.length; i++) {
+        let firstNonZeroIndex = -1; 
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] !== 0) {
+                firstNonZeroIndex = j;
+                break;
+            }
+        }
+        if (firstNonZeroIndex === -1) {
+            return "echelon";
+        }
+        if (firstNonZeroIndex <= lastNonZeroIndex) {
+            return "";
+        }
+        lastNonZeroIndex = firstNonZeroIndex;
+    }
+    return "echelon";
+}
+// - - -
+
 // - - - Здесь функция по подсчету определителя
+function determinant(matrix) {
+    if (isSquare(matrix) === "") {
+        return "";
+    }
+    if (matrix.length === 2 && matrix[0].length === 2) {
+        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+    }
+    let det = 0;
+    for (let i = 0; i < matrix[0].length; i++) {
+        const minor = matrix.slice(1).map(row => row.slice(0, i).concat(row.slice(i + 1)));
+        det += matrix[0][i] * determinant(minor) * (i % 2 === 0 ? 1 : -1);
+    }
+    return det;
+}
 // - - -
 
 // - - - Здесь по рангам
