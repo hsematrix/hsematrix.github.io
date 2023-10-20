@@ -5,8 +5,8 @@ let rank = document.getElementsByClassName("rank")
 // Квадратная
 function isSquare(matrix) {
     if (matrix.length === matrix[0].length) {
-        return "matrix is square";
-    } return "matrix isn't square";
+        return "square";
+    } return "";
 }
 
 //Нулевая
@@ -23,48 +23,48 @@ function isZero(matrix) {
             break;
         }
     }
-    if (flag) return "matrix is zero";
-    return "matrix isn't zero";
+    if (flag) return "zero";
+    return "";
 }
 
 //Диагональная
 function isDiagonal(matrix) {
-    if (isSquare(matrix) === "matrix isn't square") {
-        return "rectangular matrix can't be diagonal";
+    if (isSquare(matrix) === "") {
+        return "";
     }
     let flag = true;
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] !== 0 && i !== j) {
-                return "matrix isn't diagonal";
+                return "";
             }
         }
     }
-    return "matrix is diagonal";
+    return "diagonal";
     
 }
 
 //Единичная
 function isUnit(matrix){
-    if (isSquare(matrix) === "matrix isn't square") {
-        return "rectangular matrix can't be identity";
+    if (isSquare(matrix) === "") {
+        return "";
     }
-    if (isDiagonal(matrix) === "matrix isn't diagonal") {
-        return "not diagonal matrix can't be identity";
+    if (isDiagonal(matrix) === "") {
+        return "";
     }
     for (let i = 0; i < matrix.length; i++) {
         if (matrix[i][i] !== 1) {
-                return "matrix isn't indentity";
+                return "";
         }
     }
-    return "matrix is identity";
+    return "identity";
 }
 
 //Треугольная
 function isTriangle(matrix){
     let flag = true;
-    if (isSquare(matrix) === "matrix isn't square") {
-        return "rectangular matrix can't be triangular";
+    if (isSquare(matrix) === "") {
+        return "";
     }
     for (let i = 1; i < matrix.length; i++) {
         for (let j = 0; j < i; j++) {
@@ -90,9 +90,9 @@ function isTriangle(matrix){
         }
     }
     if (!flag && !flag1) {
-        return "matrix isn't triangular";
+        return "";
     }
-    return "matrix is triangular"
+    return "triangular"
 }
 
 //Ступенчатая
@@ -107,21 +107,21 @@ function isEchelon(matrix) {
             }
         }
         if (firstNonZeroIndex === -1) {
-            return "matrix is echelon";
+            return "echelon";
         }
         if (firstNonZeroIndex <= lastNonZeroIndex) {
-            return "matrix isn't echelon";
+            return "";
         }
         lastNonZeroIndex = firstNonZeroIndex;
     }
-    return "matrix is echelon";
+    return "echelon";
 }
 // - - -
 
 // - - - Здесь функция по подсчету определителя
 function determinant(matrix) {
-    if (isSquare(matrix) === "matrix isn't square") {
-        return "the matrix must be square to calculate the determinant";
+    if (isSquare(matrix) === "") {
+        return "";
     }
     if (matrix.length === 2 && matrix[0].length === 2) {
         return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
