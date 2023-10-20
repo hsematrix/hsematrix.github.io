@@ -121,7 +121,7 @@ function isEchelon(matrix) {
 // - - -
 
 // - - - Здесь функция по подсчету определителя
-function determinant(matrix) {
+function detr(matrix) {
     if (isSquare(matrix) === "") {
         return "";
     }
@@ -131,7 +131,7 @@ function determinant(matrix) {
     let det = 0;
     for (let i = 0; i < matrix[0].length; i++) {
         const minor = matrix.slice(1).map(row => row.slice(0, i).concat(row.slice(i + 1)));
-        det += matrix[0][i] * determinant(minor) * (i % 2 === 0 ? 1 : -1);
+        det += matrix[0][i] * detr(minor) * (i % 2 === 0 ? 1 : -1);
     }
     return det;
 }
@@ -219,8 +219,14 @@ det.addEventListener('click', () => {
 			    }
 			})
  			setTimeout(function(){toBot()}, 500)
- 			determinant.innerHTML=`determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${}</span>`
- 			rang.innerHTML=`ran = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${}</span>`
+ 			determinant.innerHTML=`determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${detr(matrix)}</span>`
+ 			rang.innerHTML=`ran = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(matrix,row_size,column_size)}</span>`
+ 			document.getElementsByClassName('t')[0].innerHTML=`<div class="property">${isSquare(matrix)}</div>
+ 						<div class="property">${isZero(matrix)}</div>
+ 						<div class="property">${isDiagonal(matrix)}</div>
+ 						<div class="property">${isUnit(matrix)}</div>
+ 						<div class="property">${isTriangle(matrix)}</div>
+ 						<div class="property">${isEchelon(matrix)}</div>`
 	 		detBool=false
 	 		det.style.transform='rotateX(180deg)'
 	 		det.style.backgroundColor='rgba(256,256,256,0.05)'

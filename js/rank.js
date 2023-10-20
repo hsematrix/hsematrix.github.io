@@ -51,11 +51,3 @@ function get_rank(matrix, R, C) {
 //         console.log(element);
 //     });
 // }
-
-matrix = [
-    [1, 2, 3, 5],
-    [4, 5, 6, 1],
-    [7, 8, 9, 0]
-];
-
-console.log(get_rank(matrix, 3, 4));
