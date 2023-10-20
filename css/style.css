@@ -155,16 +155,29 @@ option{
 }
 .footer{
 	justify-content: start;
-	height: 30vh;
+	height: auto;
 	font-family: Arial;
 	font-size: 200%;
 	text-align: center;
 	color: rgba(256,256,256,0.6);
+	display: flex;
+	justify-content: top;
+	align-items: center;
+}
+.text{
+	max-height: 70vh;
+	margin-bottom: 10vh;
 }
 .determinant{
 	margin-bottom: 10px;
 }
-
+.rang{
+	margin-bottom: 10px;
+}
+.property{
+	margin-bottom: 10px;
+	color: rgba(28,225,213,0.6);
+}
 @media screen and (max-width: 920px){
 	.content{
 		width: 100%;

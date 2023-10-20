@@ -73,9 +73,23 @@ det.addEventListener('click', () => {
  			}
  		})
  		if(flag==true){
+ 			let row_size = rank[0].value
+			let column_size = rank[1].value
+			let matrix = [];
+			let c = 0;
+			let row = [];
+			Array.from(document.getElementsByClassName('num')).forEach(function (item, index, array) {
+			    row.push(item.value);
+			    c++;
+			    if (c == column_size) {
+			        matrix.push(row);
+			        row = [];
+			        c = 0;
+			    }
+			})
  			setTimeout(function(){toBot()}, 500)
- 			determinant.innerHTML=`determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${"?"}</span>`
- 			rang.innerHTML=`ran = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${"?"}</span>`
+ 			determinant.innerHTML=`determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${}</span>`
+ 			rang.innerHTML=`ran = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${}</span>`
 	 		detBool=false
 	 		det.style.transform='rotateX(180deg)'
 	 		det.style.backgroundColor='rgba(256,256,256,0.05)'
