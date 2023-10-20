@@ -16,7 +16,7 @@ function get_rank(matrix, R, C) {
     let rank = C;
     for (let row = 0; row < rank; row++) {
         // Элемент на главной диагонали != 0
-        if (!matrix[row][row]) {
+        if (matrix[row][row]) {
             // Применяем тот самый алгоритм с лекции
             for (let col = 0; col < R; col++) {
                 if (col != row) {
@@ -29,7 +29,7 @@ function get_rank(matrix, R, C) {
             // Если столбец нулевой, то заменяем его последним
             let isEmpty = true;
             for (let i = row + 1; i < R; i++) {
-                if (matrix[i][0]) {
+                if (matrix[i][row]) {
                     swap_rows(matrix, row, i, rank);
                     isEmpty = false;
                     break;
@@ -39,17 +39,23 @@ function get_rank(matrix, R, C) {
                 rank--;
                 swap_columns(matrix, row, rank, R);
             }
-            rank--;
+            row--;
+            // display(matrix);
         }
     }
     return rank;
 }
 
+// function display(matrix) {
+//     matrix.forEach(element => {
+//         console.log(element);
+//     });
+// }
 
 matrix = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9]
+    [1, 2, 3, 5],
+    [4, 5, 6, 1],
+    [7, 8, 9, 0]
 ];
 
-console.log(get_rank(matrix));
+console.log(get_rank(matrix, 3, 4));
