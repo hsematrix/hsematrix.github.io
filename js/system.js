@@ -15,7 +15,7 @@ window.onload = function() {
 // Квадратная
 function isSquare(matrix) {
 	if (matrix.length === matrix[0].length) {
-		return "square";
+		return "квадратная";
 	} return "";
 }
 
@@ -34,7 +34,7 @@ function isZero(matrix) {
 			break;
 		}
 	}
-	if (flag) return "zero";
+	if (flag) return "нулевая";
 	return "";
 }
 
@@ -52,7 +52,7 @@ function isDiagonal(matrix) {
 			}
 		}
 	}
-	return "diagonal";
+	return "диагональная";
 
 }
 
@@ -70,7 +70,7 @@ function isUnit(matrix) {
 			return "";
 		}
 	}
-	return "identity";
+	return "единичная";
 }
 
 //Треугольная
@@ -105,7 +105,7 @@ function isTriangle(matrix) {
 	if (!flag && !flag1) {
 		return "";
 	}
-	return "triangular"
+	return "треугольная"
 }
 
 //Ступенчатая
@@ -121,14 +121,14 @@ function isEchelon(matrix) {
 			}
 		}
 		if (firstNonZeroIndex === -1) {
-			return "echelon";
+			return "ступенчатая";
 		}
 		if (firstNonZeroIndex <= lastNonZeroIndex) {
 			return "";
 		}
 		lastNonZeroIndex = firstNonZeroIndex;
 	}
-	return "echelon";
+	return "ступенчатая";
 }
 // - - -
 
@@ -228,8 +228,8 @@ det.addEventListener('click', () => {
 			})
 			console.log(mat)
 			setTimeout(function () { toBot() }, 500)
-			determinant.innerHTML = `determinant = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${detr(mat)}</span>`
-			rang.innerHTML = `rank = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(deepCopy(mat), row_size, column_size)}</span>`
+			determinant.innerHTML = `детерминант = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${detr(mat)}</span>`
+			rang.innerHTML = `ранг = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(deepCopy(mat), row_size, column_size)}</span>`
 			document.getElementsByClassName('t')[0].innerHTML = `<div class="property">${isSquare(mat)}</div>
 						<div class="property">${isZero(mat)}</div>
 						<div class="property">${isDiagonal(mat)}</div>
@@ -239,7 +239,7 @@ det.addEventListener('click', () => {
 			detBool = false
 			det.style.transform = 'rotateX(180deg)'
 			det.style.backgroundColor = 'rgba(256,256,256,0.05)'
-			setTimeout(function () { det.innerHTML = `<span style="transform:rotateX(180deg);color:rgba(144,235,230,0.7);">reset</span>` }, 100)
+			setTimeout(function () { det.innerHTML = `<span style="transform:rotateX(180deg);color:rgba(144,235,230,0.7);">сброс</span>` }, 100)
 		}
 	}
 	else if (detBool == false) {
@@ -259,7 +259,7 @@ det.addEventListener('click', () => {
 				setTimeout(function () { item.style.transitionDuration = '0.5s' }, 50)
 			}, 500)
 		})
-		setTimeout(function () { det.innerHTML = `det` }, 100)
+		setTimeout(function () { det.innerHTML = `пуск` }, 100)
 	}
 })
 Array.from(document.getElementsByClassName('num')).forEach(function (item, index, array) {
@@ -271,7 +271,7 @@ Array.from(document.getElementsByClassName('num')).forEach(function (item, index
 				detBool = true
 				det.style.transform = 'rotateX(0deg)'
 				det.style.backgroundColor = 'rgba(186,234,231,0.3)'
-				setTimeout(function () { det.innerHTML = `det` }, 100)
+				setTimeout(function () { det.innerHTML = `пуск` }, 100)
 			}
 		}, 500)
 		let inputValue = item.value
@@ -299,7 +299,7 @@ rank[0].addEventListener('change', function () {
 					setTimeout(function () { item.style.transitionDuration = '0.5s' }, 50)
 				}, 500)
 			})
-			setTimeout(function () { det.innerHTML = `det` }, 100)
+			setTimeout(function () { det.innerHTML = `пуск` }, 100)
 		}
 	}, 500)
 	string = ``
@@ -320,7 +320,7 @@ rank[0].addEventListener('change', function () {
 					detBool = true
 					det.style.transform = 'rotateX(0deg)'
 					det.style.backgroundColor = 'rgba(186,234,231,0.3)'
-					setTimeout(function () { det.innerHTML = `det` }, 100)
+					setTimeout(function () { det.innerHTML = `пуск` }, 100)
 				}
 			}, 500)
 			let inputValue = item.value
@@ -349,7 +349,7 @@ rank[1].addEventListener('change', function () {
 					setTimeout(function () { item.style.transitionDuration = '0.5s' }, 50)
 				}, 500)
 			})
-			setTimeout(function () { det.innerHTML = `det` }, 100)
+			setTimeout(function () { det.innerHTML = `пуск` }, 100)
 		}
 	}, 500)
 	string = ``
@@ -370,7 +370,7 @@ rank[1].addEventListener('change', function () {
 					detBool = true
 					det.style.transform = 'rotateX(0deg)'
 					det.style.backgroundColor = 'rgba(186,234,231,0.3)'
-					setTimeout(function () { det.innerHTML = `det` }, 100)
+					setTimeout(function () { det.innerHTML = `пуск` }, 100)
 				}
 			}, 500)
 			let inputValue = item.value
