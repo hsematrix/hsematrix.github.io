@@ -3,11 +3,11 @@ let rank = document.getElementsByClassName("rank")
 let determinant = document.getElementsByClassName("determinant")[0]
 let rang = document.getElementsByClassName("rang")[0]
 
-window.onload = function() {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
+window.onload = function () {
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	})
 }
 
 
@@ -134,21 +134,21 @@ function isEchelon(matrix) {
 
 // - - - Здесь функция по подсчету определителя
 function detr(matrix) {
-    if (isSquare(matrix) === "") {
-        return "none";
-    }
+	if (isSquare(matrix) === "") {
+		return "none";
+	}
 	if (matrix.length === 1) {
 		return matrix;
 	}
-    if (matrix.length === 2 && matrix[0].length === 2) {
-        return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
-    }
-    let det = 0;
-    for (let i = 0; i < matrix[0].length; i++) {
-        const minor = matrix.slice(1).map(row => row.slice(0, i).concat(row.slice(i + 1)));
-        det += matrix[0][i] * detr(minor) * (i % 2 === 0 ? 1 : -1);
-    }
-    return det;
+	if (matrix.length === 2 && matrix[0].length === 2) {
+		return matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+	}
+	let det = 0;
+	for (let i = 0; i < matrix[0].length; i++) {
+		const minor = matrix.slice(1).map(row => row.slice(0, i).concat(row.slice(i + 1)));
+		det += matrix[0][i] * detr(minor) * (i % 2 === 0 ? 1 : -1);
+	}
+	return det;
 }
 // - - -
 
@@ -170,19 +170,19 @@ rank[1].value = '3'
 detBool = true
 
 function toTop() {
-    document.body.style.overflow = 'hidden';
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    })
+	document.body.style.overflow = 'hidden';
+	window.scrollTo({
+		top: 0,
+		behavior: 'smooth'
+	})
 }
 
 function toBot() {
-    document.body.style.overflow = 'auto';
-    window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: 'smooth'
-    })
+	document.body.style.overflow = 'auto';
+	window.scrollTo({
+		top: document.body.scrollHeight,
+		behavior: 'smooth'
+	})
 }
 
 function deepCopy(arr) {
@@ -194,9 +194,9 @@ function deepCopy(arr) {
 		} else {
 			// Иначе просто копируем элемент
 			copy[i] = arr[i];
-            }
-    }
-    return copy;
+		}
+	}
+	return copy;
 }
 
 document.body.style.overflow = 'hidden'
@@ -214,8 +214,8 @@ det.addEventListener('click', () => {
 			}
 		})
 		if (flag == true) {
-			let row_size = rank[0].value
-			let column_size = rank[1].value
+			let row_size = Number(rank[0].value);
+			let column_size = Number(rank[1].value);
 			let mat = [];
 			let row = [];
 
