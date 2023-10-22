@@ -41,7 +41,7 @@ function isZero(matrix) {
 //Диагональная
 function isDiagonal(matrix) {
 	console.log("Rank: ", matrix)
-	if (isSquare(matrix) === "") {
+	if (isSquare(matrix) === "" || isZero(matrix) == "нулевая") {
 		return "";
 	}
 	let flag = true;
@@ -76,7 +76,7 @@ function isUnit(matrix) {
 //Треугольная
 function isTriangle(matrix) {
 	let flag = true;
-	if (isSquare(matrix) === "") {
+	if (isSquare(matrix) === "" || matrix.length == 1 || isZero !== "") {
 		return "";
 	}
 	for (let i = 1; i < matrix.length; i++) {
@@ -111,6 +111,7 @@ function isTriangle(matrix) {
 //Ступенчатая
 function isEchelon(matrix) {
 	console.log("Rank: ", matrix)
+	if (matrix.length == 1 || matrix[0].length == 1) return "";
 	let lastNonZeroIndex = -1;
 	for (let i = 0; i < matrix.length; i++) {
 		let firstNonZeroIndex = -1;
