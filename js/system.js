@@ -76,7 +76,7 @@ function isUnit(matrix) {
 //Треугольная
 function isTriangle(matrix) {
 	let flag = true;
-	if (isSquare(matrix) === "" || matrix.length == 1 || isZero !== "") {
+	if (isSquare(matrix) === "" || matrix.length == 1 || isZero(matrix) !== "") {
 		return "";
 	}
 	for (let i = 1; i < matrix.length; i++) {
@@ -108,10 +108,30 @@ function isTriangle(matrix) {
 	return "треугольная"
 }
 
+//отладка
+function isArrayZero(arr){
+	return arr.every(function(element){
+		return element == 0;
+	})
+}
+
 //Ступенчатая
 function isEchelon(matrix) {
-	console.log("Rank: ", matrix)
 	if (matrix.length == 1 || matrix[0].length == 1) return "";
+	flag = false;
+	flag1 = false;
+	for (let i = 0; i < matrix.length; i++) {
+		if(isArrayZero(matrix[i])){
+			if (flag1){
+				return "";
+			}
+			flag = true;
+		} else {
+			if (flag) {
+				flag1 = true;
+			}
+		}
+	}
 	let lastNonZeroIndex = -1;
 	for (let i = 0; i < matrix.length; i++) {
 		let firstNonZeroIndex = -1;
