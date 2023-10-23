@@ -3,25 +3,17 @@ let rank = document.getElementsByClassName("rank")
 let determinant = document.getElementsByClassName("determinant")[0]
 let rang = document.getElementsByClassName("rang")[0]
 
-window.onload = function () {
-	window.scrollTo({
-		top: 0,
-		behavior: 'smooth'
-	})
-}
-
 
 // - - - Функции определения свойств
 // Квадратная
 function isSquare(matrix) {
 	if (matrix.length === matrix[0].length) {
-		return "квадратная";
+		return "Квадратная";
 	} return "";
 }
 
 //Нулевая
 function isZero(matrix) {
-	console.log("Rank: ", matrix)
 	let flag = true;
 	for (let i = 0; i < matrix.length; i++) {
 		for (let j = 0; j < matrix[i].length; j++) {
@@ -34,25 +26,25 @@ function isZero(matrix) {
 			break;
 		}
 	}
-	if (flag) return "нулевая";
+	if (flag) return "Нулевая";
 	return "";
 }
 
 //Диагональная
 function isDiagonal(matrix) {
 	console.log("Rank: ", matrix)
-	if (isSquare(matrix) === "" || isZero(matrix) == "нулевая") {
+	if (isSquare(matrix) === "" || isZero(matrix) == "Нулевая") {
 		return "";
 	}
 	let flag = true;
 	for (let i = 0; i < matrix.length; i++) {
 		for (let j = 0; j < matrix[i].length; j++) {
-			if (matrix[i][j] !== 0 && i !== j) {
+			if ((matrix[i][j] !== 0 && i !== j) || matrix[i][j] == 0) {
 				return "";
 			}
 		}
 	}
-	return "диагональная";
+	return "Диагональная";
 
 }
 
@@ -70,7 +62,7 @@ function isUnit(matrix) {
 			return "";
 		}
 	}
-	return "единичная";
+	return "Единичная";
 }
 
 //Треугольная
@@ -105,7 +97,7 @@ function isTriangle(matrix) {
 	if (!flag && !flag1) {
 		return "";
 	}
-	return "треугольная"
+	return "Треугольная"
 }
 
 //отладка
@@ -119,16 +111,12 @@ function isArrayZero(arr){
 function isEchelon(matrix) {
 	if (matrix.length == 1 || matrix[0].length == 1) return "";
 	flag = false;
-	flag1 = false;
 	for (let i = 0; i < matrix.length; i++) {
 		if(isArrayZero(matrix[i])){
-			if (flag1){
-				return "";
-			}
 			flag = true;
 		} else {
 			if (flag) {
-				flag1 = true;
+				return "";
 			}
 		}
 	}
@@ -142,14 +130,14 @@ function isEchelon(matrix) {
 			}
 		}
 		if (firstNonZeroIndex === -1) {
-			return "ступенчатая";
+			return "Ступенчатая";
 		}
 		if (firstNonZeroIndex <= lastNonZeroIndex) {
 			return "";
 		}
 		lastNonZeroIndex = firstNonZeroIndex;
 	}
-	return "ступенчатая";
+	return "Ступенчатая";
 }
 // - - -
 
@@ -198,6 +186,7 @@ function toTop() {
 	})
 }
 
+
 function toBot() {
 	document.body.style.overflow = 'auto';
 	window.scrollTo({
@@ -221,6 +210,7 @@ function deepCopy(arr) {
 }
 
 document.body.style.overflow = 'hidden'
+setTimeout(function(){toTop()},100)
 det.addEventListener('click', () => {
 	if (detBool == true) {
 		let flag = true
@@ -249,8 +239,8 @@ det.addEventListener('click', () => {
 			})
 			console.log(mat)
 			setTimeout(function () { toBot() }, 500)
-			determinant.innerHTML = `детерминант = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${detr(mat)}</span>`
-			rang.innerHTML = `ранг = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(deepCopy(mat), row_size, column_size)}</span>`
+			determinant.innerHTML = `Определитель = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${detr(mat)}</span>`
+			rang.innerHTML = `Ранг = <span style="color: rgba(28,225,213,0.6); font-weight: bold;">${get_rank(deepCopy(mat), row_size, column_size)}</span>`
 			document.getElementsByClassName('t')[0].innerHTML = `<div class="property">${isSquare(mat)}</div>
 						<div class="property">${isZero(mat)}</div>
 						<div class="property">${isDiagonal(mat)}</div>
@@ -260,7 +250,7 @@ det.addEventListener('click', () => {
 			detBool = false
 			det.style.transform = 'rotateX(180deg)'
 			det.style.backgroundColor = 'rgba(256,256,256,0.05)'
-			setTimeout(function () { det.innerHTML = `<span style="transform:rotateX(180deg);color:rgba(144,235,230,0.7);">сброс</span>` }, 100)
+			setTimeout(function () { det.innerHTML = `<span style="transform:rotateX(180deg);color:rgba(144,235,230,0.7);">Сброс</span>` }, 100)
 		}
 	}
 	else if (detBool == false) {
@@ -280,7 +270,7 @@ det.addEventListener('click', () => {
 				setTimeout(function () { item.style.transitionDuration = '0.5s' }, 50)
 			}, 500)
 		})
-		setTimeout(function () { det.innerHTML = `пуск` }, 100)
+		setTimeout(function () { det.innerHTML = `Пуск` }, 100)
 	}
 })
 Array.from(document.getElementsByClassName('num')).forEach(function (item, index, array) {
@@ -292,7 +282,7 @@ Array.from(document.getElementsByClassName('num')).forEach(function (item, index
 				detBool = true
 				det.style.transform = 'rotateX(0deg)'
 				det.style.backgroundColor = 'rgba(186,234,231,0.3)'
-				setTimeout(function () { det.innerHTML = `пуск` }, 100)
+				setTimeout(function () { det.innerHTML = `Пуск` }, 100)
 			}
 		}, 500)
 		let inputValue = item.value
@@ -320,7 +310,7 @@ rank[0].addEventListener('change', function () {
 					setTimeout(function () { item.style.transitionDuration = '0.5s' }, 50)
 				}, 500)
 			})
-			setTimeout(function () { det.innerHTML = `пуск` }, 100)
+			setTimeout(function () { det.innerHTML = `Пуск` }, 100)
 		}
 	}, 500)
 	string = ``
@@ -341,7 +331,7 @@ rank[0].addEventListener('change', function () {
 					detBool = true
 					det.style.transform = 'rotateX(0deg)'
 					det.style.backgroundColor = 'rgba(186,234,231,0.3)'
-					setTimeout(function () { det.innerHTML = `пуск` }, 100)
+					setTimeout(function () { det.innerHTML = `Пуск` }, 100)
 				}
 			}, 500)
 			let inputValue = item.value
@@ -370,7 +360,7 @@ rank[1].addEventListener('change', function () {
 					setTimeout(function () { item.style.transitionDuration = '0.5s' }, 50)
 				}, 500)
 			})
-			setTimeout(function () { det.innerHTML = `пуск` }, 100)
+			setTimeout(function () { det.innerHTML = `Пуск` }, 100)
 		}
 	}, 500)
 	string = ``
@@ -391,7 +381,7 @@ rank[1].addEventListener('change', function () {
 					detBool = true
 					det.style.transform = 'rotateX(0deg)'
 					det.style.backgroundColor = 'rgba(186,234,231,0.3)'
-					setTimeout(function () { det.innerHTML = `пуск` }, 100)
+					setTimeout(function () { det.innerHTML = `Пуск` }, 100)
 				}
 			}, 500)
 			let inputValue = item.value
